@@ -5,34 +5,30 @@
 ## 前提条件
 
 - [GoLang のバージョン 1.22 以上](https://go.dev/)
-- [Docker および Docker Compose](https://www.docker.com/)
 
 ## インストールと実行
 
-1. このリポジトリをクローン
+1. このリポジトリをクローンします
 
     ```bash
     git clone https://github.com/RabiesDev/verifydog
     ```
 
-2. プロジェクトのディレクトリに移動
-
-    ```bash
-    cd verifydog
-    ```
-
-3. .env に必要な情報を設定します
-
-4. Docker Compose を使用してデータベースを起動
-
-    ```bash
-    docker-compose up
-    ```
-
-5. Botを起動する
+2. プロジェクトのディレクトリに`.env`を作成します
+3. `.env`に必要な情報を設定します
+4. Botを起動します
 
    ```bash
    go run main.go
+   ```
+   
+## Dockerを使用する場合
+
+1. `docker-compose.yml`と`.env`を環境に応じて設定します
+2. Dockerコンテナをビルドして起動します
+
+   ```bash
+   docker-compose up
    ```
 
 ## 使用方法
