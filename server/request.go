@@ -14,7 +14,7 @@ func (server *Server) OAuth2Token(authorizeCode string) (string, string) {
 	payload := strings.NewReader(url.Values{
 		"client_id":     {server.Environment.ClientID},
 		"client_secret": {server.Environment.ClientSecret},
-		"redirect_uri":  {"http://127.0.0.1:3030/authorize"},
+		"redirect_uri":  {server.Environment.RedirectURL},
 		"grant_type":    {"authorization_code"},
 		"code":          {authorizeCode},
 	}.Encode())

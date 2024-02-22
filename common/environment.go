@@ -14,6 +14,7 @@ type Environment struct {
 	Driver       string
 	Database     string
 	AuthorizeURL string
+	RedirectURL  string
 	BotToken     string
 	ClientID     string
 	ClientSecret string
@@ -40,6 +41,7 @@ func (environment *Environment) Parse() error {
 	environment.Database = os.Getenv("DATABASE")
 
 	environment.AuthorizeURL = os.Getenv("AUTHORIZE_URL")
+	environment.RedirectURL = os.Getenv("REDIRECT_URL")
 
 	environment.BotToken = os.Getenv("BOT_TOKEN")
 	environment.ClientID = os.Getenv("CLIENT_ID")
