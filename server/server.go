@@ -36,6 +36,7 @@ func (server *Server) Startup() error {
 		return err
 	}
 
+	server.Router.Use(middleware.RateLimitMiddleware)
 	server.Router.GET("/", server.StatusHandler())
 	server.Router.GET("/authorize", server.AuthorizeHandler())
 	server.Router.NoRoute(middleware.NoRouteMiddleware)
