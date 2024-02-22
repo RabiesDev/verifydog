@@ -31,7 +31,7 @@ func main() {
 		logrus.Debug("Bot is running in developer mode")
 	}
 
-	if err := common.OpenDatabase(environment.DataSourceName); err != nil {
+	if err := common.OpenDatabase(environment.Driver, environment.Database); err != nil {
 		logrus.Error(err)
 		os.Exit(1)
 	}

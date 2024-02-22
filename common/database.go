@@ -1,8 +1,11 @@
 package common
 
 import (
+	"fmt"
 	"gorm.io/driver/postgres"
+	"gorm.io/driver/sqlite"
 	"gorm.io/gorm"
+	"strings"
 )
 
 var database *gorm.DB
@@ -15,11 +18,21 @@ type Authenticated struct {
 	RefreshToken string
 }
 
-func OpenDatabase(dsn string) (err error) {
-	database, err = gorm.Open(postgres.Open(dsn), &gorm.Config{})
+func OpenDatabase(driver, dsn string) (err error) {
+	var dialector gorm.Dialector
+	if strings.EqualFold(driver, "postgres") {
+		dialector = postgres.Open(dsn)
+	} else if strings.EqualFold(driver, "sqlite") {
+		dialector = sqlite.Open(dsn)
+	} else {
+		return fmt.Errorf("invalid driver")
+	}
+
+	database, err = gorm.Open(dialector, &gorm.Config{})
 	if err != nil {
 		return err
 	}
+
 	return database.AutoMigrate(&Authenticated{})
 }
 

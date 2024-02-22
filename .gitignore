@@ -56,6 +56,7 @@ cmake-build-*/
 # IntelliJ
 *.env.local
 *.env
+*.db
 out/
 
 # mpeltonen/sbt-idea plugin

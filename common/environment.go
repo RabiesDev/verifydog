@@ -11,13 +11,14 @@ type Environment struct {
 	DevMode bool `short:"d" long:"debug" description:"start in development mode"`
 
 	// environments
-	DataSourceName string
-	AuthorizeURL   string
-	BotToken       string
-	ClientID       string
-	ClientSecret   string
-	GuildID        string
-	AuthRoleID     string
+	Driver       string
+	Database     string
+	AuthorizeURL string
+	BotToken     string
+	ClientID     string
+	ClientSecret string
+	GuildID      string
+	AuthRoleID   string
 }
 
 func (environment *Environment) Parse() error {
@@ -35,12 +36,17 @@ func (environment *Environment) Parse() error {
 		return err
 	}
 
-	environment.DataSourceName = os.Getenv("DATA_SOURCE_NAME")
+	environment.Driver = os.Getenv("DRIVER")
+	environment.Database = os.Getenv("DATABASE")
+
 	environment.AuthorizeURL = os.Getenv("AUTHORIZE_URL")
+
 	environment.BotToken = os.Getenv("BOT_TOKEN")
 	environment.ClientID = os.Getenv("CLIENT_ID")
 	environment.ClientSecret = os.Getenv("CLIENT_SECRET")
+
 	environment.GuildID = os.Getenv("GUILD_ID")
 	environment.AuthRoleID = os.Getenv("AUTH_ROLE_ID")
+
 	return nil
 }
