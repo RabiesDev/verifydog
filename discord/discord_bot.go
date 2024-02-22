@@ -43,6 +43,7 @@ func (bot *Bot) Startup() error {
 	session.AddHandler(bot.OnReady)
 	session.AddHandler(bot.OnInteractionCreate)
 
+	bot.Session = session
 	return session.Open()
 }
 
